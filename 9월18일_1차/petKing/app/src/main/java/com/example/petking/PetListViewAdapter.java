@@ -47,14 +47,16 @@ public class PetListViewAdapter extends BaseAdapter {
 
         // listitem.xml 의 참조 획득
         ImageView list_image=(ImageView)convertView.findViewById(R.id.pet_image);
-        TextView list_ingredients = (TextView)convertView.findViewById(R.id.pet_name);
-        TextView list_date = (TextView)convertView.findViewById(R.id.pet_info);
+        TextView list_name = (TextView)convertView.findViewById(R.id.pet_name);
+        TextView list_address = (TextView)convertView.findViewById(R.id.pet_address);
+        TextView list_lookFor = (TextView)convertView.findViewById(R.id.pet_lookFor);
         PetListItem listItem = listItems.get(position);
 
         // 가져온 데이터를 텍스트뷰에 입력
         list_image.setImageBitmap(listItem.getImage());
-        list_ingredients.setText(listItem.getText1());
-        list_date.setText(listItem.getText2());
+        list_name.setText(listItem.getText1());
+        list_address.setText(listItem.getText2());
+        list_lookFor.setText(listItem.getText3());
 
         return convertView;
     }

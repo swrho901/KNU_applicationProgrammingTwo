@@ -31,7 +31,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/pet_info"
+            android:id="@+id/pet_address"
             android:layout_width="188dp"
             android:layout_height="60dp"
             android:layout_marginBottom="8dp"
@@ -44,6 +44,15 @@
             app:layout_constraintTop_toBottomOf="@+id/pet_name"
             app:layout_constraintVertical_bias="1.0"
             tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/pet_lookFor"
+            android:layout_width="64dp"
+            android:layout_height="38dp"
+            android:text="TextView"
+            android:textSize="20dp"
+            tools:layout_editor_absoluteX="344dp"
+            tools:layout_editor_absoluteY="6dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
