@@ -25,8 +25,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TableRow>
+            <Spinner
+                android:id="@+id/spinner"
+                android:entries="@array/종류"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
 
+            <TableRow>
                 <EditText
                     android:id="@+id/writeTitle"
                     android:layout_width="match_parent"
@@ -43,6 +49,13 @@
             android:hint="내용을 입력하세요."
             android:layout_weight="1"/>
     </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/add_image"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/picture"
+        android:scaleType="centerInside"/>
 
     <Button
         android:id="@+id/btn_add"
