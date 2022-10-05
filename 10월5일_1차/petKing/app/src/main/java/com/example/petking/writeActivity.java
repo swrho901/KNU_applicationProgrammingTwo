@@ -53,8 +53,7 @@ public class writeActivity extends AppCompatActivity {
     EditText writeTitle;
     EditText writeContents;
     Spinner spinner;
-    public String user_ad;
-    public String user_id;
+    public String user_id, user_ad;
     public int total_read_num;
 
     private FirebaseDatabase database;
@@ -70,6 +69,10 @@ public class writeActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write);
+
+        Intent secondIntent = getIntent();
+        user_ad = secondIntent.getStringExtra("user_address");
+        user_id = secondIntent.getStringExtra("user_id");
 
 
         //메인 화면으로 전환
@@ -118,6 +121,7 @@ public class writeActivity extends AppCompatActivity {
                 startActivityResult.launch(intent);
             }
         });
+
     }
 
     ActivityResultLauncher<Intent> startActivityResult = registerForActivityResult(

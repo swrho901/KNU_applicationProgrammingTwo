@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity   {
     private DatabaseReference databaseReference;
     public int total_num_of_contents = 4;
 
+    public String user_address, user_id;
+
     ImageView load;
 
     @Override
@@ -181,6 +183,8 @@ public class MainActivity extends AppCompatActivity   {
                 User user = snapshot.getValue(User.class);
                 if(user != null){
                     tvName.setText(user.name);
+                    user_id = user.id;
+                    user_address = user.address;
                 }
             }
 
@@ -214,6 +218,8 @@ public class MainActivity extends AppCompatActivity   {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), writeActivity.class);
+                intent.putExtra("user_address", user_address);
+                intent.putExtra("user_id", user_id);
                 startActivity(intent);
             }
         });
