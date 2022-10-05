@@ -61,7 +61,6 @@ public class writeActivity extends AppCompatActivity {
     FirebaseStorage storage = FirebaseStorage.getInstance(); //스토리지 인스턴스를 만들고,
     //파일명을 만들자.
 
-
     public writeActivity() {
     }
 
@@ -69,11 +68,6 @@ public class writeActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write);
-
-        Intent secondIntent = getIntent();
-        user_ad = secondIntent.getStringExtra("user_address");
-        user_id = secondIntent.getStringExtra("user_id");
-
 
         //메인 화면으로 전환
         ImageButton btnmanager=(ImageButton)findViewById(R.id.btnmanager);
@@ -147,6 +141,11 @@ public class writeActivity extends AppCompatActivity {
             });
 
     private void uploadContents() {
+
+
+        Intent secondIntent = getIntent();
+        user_ad = secondIntent.getStringExtra("user_address");
+        user_id = secondIntent.getStringExtra("user_id");
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         String title = writeTitle.getText().toString();
