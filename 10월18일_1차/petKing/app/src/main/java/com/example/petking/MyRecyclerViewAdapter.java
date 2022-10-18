@@ -1,6 +1,5 @@
 package com.example.petking;
 
-import android.content.Intent;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.view.LayoutInflater;
@@ -10,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -42,42 +40,20 @@ class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.ViewHolde
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-        View view = inflater.inflate(R.layout.postlist_item, viewGroup, false);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_list, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         ItemData item = itemData.get(position);
-
         holder.title.setText(item.getTitle());
         holder.content.setText(item.getContent());
         holder.image.setImageResource(item.getImage());
         holder.money.setText(Integer.toString(item.getMoney()) + " KRW");
         holder.address.setText(item.getAddress());
-
-        //화면에 데이터 담기
-        holder.setItem(item);
-
-        //아이템 클릭 이벤트
-        holder.card_view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                int mPostion = holder.getBindingAdapterPosition();
-
-                Intent intent = new Intent(view.getContext(), ContentActivity.class);
-
-                intent.putExtra("title"    ,itemData.get(mPostion).getTitle()); //제목
-                intent.putExtra("content"  ,itemData.get(mPostion).getContent()); //내용
-                intent.putExtra("address"   ,itemData.get(mPostion).getAddress()); //주소
-                intent.putExtra("money"   ,itemData.get(mPostion).getMoney()); //가격
-
-                view.getContext().startActivity(intent);
-            }
-        });
 
         if (mListener != null) {
             final int pos = position;
@@ -139,8 +115,6 @@ class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.ViewHolde
         ImageView image;
         TextView money;
         TextView address;
-        CardView card_view;
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.title);
@@ -148,20 +122,10 @@ class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.ViewHolde
             image = itemView.findViewById(R.id.image);
             money = itemView.findViewById((R.id.money));
             address = itemView.findViewById(R.id.address);
-            card_view = itemView.findViewById(R.id.layout_container);
 
             //이미지뷰 원형으로 표시
             image.setBackground(new ShapeDrawable(new OvalShape()));
             image.setClipToOutline(true);
-
-        }
-
-        public void setItem(ItemData itemdata){
-
-            title.setText(itemdata.getTitle());
-            content.setText(itemdata.getContent());
-            money.setText(itemdata.getMoney());
-            address.setText(itemdata.getAddress());
         }
     }
 

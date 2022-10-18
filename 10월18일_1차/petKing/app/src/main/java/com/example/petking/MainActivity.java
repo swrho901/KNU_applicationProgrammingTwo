@@ -59,6 +59,19 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerAdapter
     public int total_num_of_contents = 4;
 
     public Context c;
+    public Context[] Carr = new Context[10000];
+    public String[] addArr = new String[10000];
+    public String[] contextArr = new String[10000];
+    public String[] typeOfContextArr = new String[10000];
+    public String[] idArr = new String[10000];
+    public String[] currentStatArr = new String[10000];
+    public int[] likeNumArr = new int[10000];
+    public int[] moneyArr = new int[10000];
+    public int[] negoArr = new int[10000];
+    public String[] titleArr = new String[10000];
+
+
+    public int contextArrIdx = 0;
 
     public String user_address, user_id;
     public Uri tempUri;
@@ -175,15 +188,15 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerAdapter
 
 
         //이거는 테스트용임
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+/*        FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = database.getReference();
         databaseReference.child("context").child("7865").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-               /* c = snapshot.getValue(Context.class);
+               *//* c = snapshot.getValue(Context.class);
                 String addd = c.address.substring(10,17);
                 dataList.add(new ItemData(cat[i], c.title,
-                        c.typeOfContext, c.money, addd));*/
+                        c.typeOfContext, c.money, addd));*//*
                 recyclerView.setAdapter(adapter);
 
             }
@@ -192,7 +205,7 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerAdapter
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        });*/
 
         DatabaseReference reference = database.getReference("users").child(currentUser.getUid());
         reference.addValueEventListener(new ValueEventListener() {
@@ -212,23 +225,7 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerAdapter
             }
         });
 
-/*
 
-        FirebaseDatabase database3 = FirebaseDatabase.getInstance();
-        DatabaseReference reference3 = database3.getReference("contextNum").child("1");
-       reference3.addValueEventListener(new ValueEventListener() {
-           @Override
-           public void onDataChange(@NonNull DataSnapshot snapshot3) {
-               int bb = snapshot3.getValue(Integer.class);
-               totalContextNum = bb;
-           }
-
-           @Override
-           public void onCancelled(@NonNull DatabaseError error) {
-
-           }
-       });
-*/
 
         DatabaseReference mFirebaseRef = database.getReference("context");
         int[] visit = new int[1000000];
@@ -242,6 +239,8 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerAdapter
                     if(visit[v] == 1) continue;
                     visit[v] = 1;
 
+
+
                     String ididid = snapshot.child("id").getValue(String.class);
                     String adadad = snapshot.child("address").getValue(String.class);
                     String tititi = snapshot.child("title").getValue(String.class);
@@ -249,11 +248,34 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerAdapter
                     int likenunu = snapshot.child("like_number").getValue(Integer.class);
                     int moneymoney = snapshot.child("money").getValue(Integer.class);
                     int negonego = snapshot.child("negotiation").getValue(Integer.class);
-
                     String main_ctxctx = snapshot.child("main_context").getValue(String.class);
                     String toctoc = snapshot.child("typeOfContext").getValue(String.class);
                     //String toctoc = snapshot.child("typeOfContext").getValue(String.class);
 
+                    addArr[contextArrIdx] = adadad; //.substring(10,17) //
+                    titleArr[contextArrIdx] = tititi;
+                    moneyArr[contextArrIdx] = moneymoney;
+                    typeOfContextArr[contextArrIdx] = toctoc;
+                    idArr[contextArrIdx] = ididid;
+                    currentStatArr[contextArrIdx] = currentStst;
+                    likeNumArr[contextArrIdx] = likenunu;
+                    negoArr[contextArrIdx] = negonego;
+                    contextArr[contextArrIdx] = main_ctxctx;
+                    contextArrIdx++;
+
+                    //일단 4개만 테스트
+
+                    /*Carr[contextArrIdx].address = adadad;
+                    Carr[contextArrIdx].main_context = main_ctxctx;
+                    Carr[contextArrIdx].typeOfContext = toctoc;
+                    Carr[contextArrIdx].id = ididid;
+                    Carr[contextArrIdx].currentStat = currentStst;
+                    Carr[contextArrIdx].like_number = likenunu;
+                    Carr[contextArrIdx].money = moneymoney;
+                    Carr[contextArrIdx].negotiation = negonego;
+                    Carr[contextArrIdx].title = tititi;
+
+                    contextArrIdx++;*/
 
                     //String aa = poly.getValue(Context.class).address;
                     String strKey = poly.getKey();
@@ -319,6 +341,7 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerAdapter
         fabCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               //Intent intent = new Intent(getApplicationContext(), CommActivity.class);
                Intent intent = new Intent(getApplicationContext(), CommActivity.class);
                startActivity(intent);
                //Toast.makeText(MainActivity.this, "카메라 버튼 클릭", Toast.LENGTH_SHORT).show();
@@ -373,6 +396,28 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerAdapter
     @Override
     public void onItemClicked(int position) {
         Toast.makeText(getApplicationContext(), "Item : "+position, Toast.LENGTH_SHORT).show();
+        Intent it = new Intent(MainActivity.this, ContentActivity.class);
+
+        it.putExtra("user_id", user_id);
+
+
+        it.putExtra("user_address", user_address);
+        ItemData item = dataList.get(position);
+
+        it.putExtra("content", contextArr[position]);
+        it.putExtra("title", item.title);
+        it.putExtra("money", item.money);
+        // test 4개 데이터
+
+        it.putExtra("title", titleArr[position]);
+        it.putExtra("address", addArr[position]);
+        it.putExtra("money", moneyArr[position]);
+        it.putExtra("typeOfContext", typeOfContextArr[position]);
+        it.putExtra("negotiation", negoArr[position]);
+        it.putExtra("currentStat", currentStatArr[position]);
+
+
+        startActivity(it);
     }
 
     public void onTitleClicked(int position) {
