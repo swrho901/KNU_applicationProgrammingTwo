@@ -42,8 +42,8 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements MyRecyclerAdapter.MyRecyclerViewClickListener {
-
+public class MainActivity extends AppCompatActivity implements MyRecyclerAdapter.MyRecyclerViewClickListener, SimpleTextAdapter.SimpleTextClickListener {
+    // , SimpleTextAdapter.SimpleTextClickListener
     ArrayList<ItemData> dataList = new ArrayList<>();
     int[] cat = {R.drawable.doggy};
 
@@ -114,6 +114,10 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerAdapter
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
         SimpleTextAdapter adapter2 = new SimpleTextAdapter(list) ;
         recyclerView2.setAdapter(adapter2) ;
+        // ??
+        adapter2.setOnClickListener(this::onTextClicked);
+
+
 
 /*   //  이 부분은 에뮬레이터에서는 오류가 안뜨나 휴대폰과 연결할 때는 오류 뜸
 
@@ -277,21 +281,6 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerAdapter
                     contextArr[contextArrIdx] = main_ctxctx;
                     contextArrIdx++;
 
-                    //일단 4개만 테스트
-
-                    /*Carr[contextArrIdx].address = adadad;
-                    Carr[contextArrIdx].main_context = main_ctxctx;
-                    Carr[contextArrIdx].typeOfContext = toctoc;
-                    Carr[contextArrIdx].id = ididid;
-                    Carr[contextArrIdx].currentStat = currentStst;
-                    Carr[contextArrIdx].like_number = likenunu;
-                    Carr[contextArrIdx].money = moneymoney;
-                    Carr[contextArrIdx].negotiation = negonego;
-                    Carr[contextArrIdx].title = tititi;
-
-                    contextArrIdx++;*/
-
-                    //String aa = poly.getValue(Context.class).address;
                     String strKey = poly.getKey();
                     String id=String.valueOf(poly.child(strKey).child("id").getValue());
                     String title=String.valueOf(poly.child("title").getValue());
@@ -324,27 +313,34 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerAdapter
         int len = ctt.length;
 
         DatabaseReference mFirebaseRef2 = database.getReference("community");
-        int[] visit2 = new int[1000000];
+        String[] visit2 = new String[1000000];
         mFirebaseRef2.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String s) {
                 for (DataSnapshot poly : snapshot.getChildren()) {
-
-                    String kk = snapshot.getKey();
-
-
 
                     String ididid = snapshot.child("id").getValue(String.class);
                     String mainCtx = snapshot.child("main_context").getValue(String.class);
                     int likenunu = snapshot.child("like_number").getValue(Integer.class);
                     String tititi = snapshot.child("title").getValue(String.class);
 
+                    int contFlag = 0;
+                    for(int i=0;i<commArrIdx;i++) {
+                        if(visit2[i].equals(tititi)) {
+                            contFlag = 1;
+                            break;
+                        }
+                    }
+                    if(contFlag == 1)
+                        continue;
+
                     ArrId[commArrIdx] = ididid;
                     ArrTitle[commArrIdx] = tititi;
                     ArrCtx[commArrIdx] = mainCtx;
                     // like num 은 나중에
-                    commArrIdx++;
 
+                    visit2[commArrIdx] = tititi;
+                    commArrIdx++;
                     list.add(tititi + "    " +ididid) ;
 
 
@@ -431,6 +427,14 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerAdapter
         }
         // 플로팅 버튼 상태 변경
         fabMain_status = !fabMain_status;
+    }
+
+    @Override
+    public void onTextClicked(int position){
+        Toast.makeText(getApplicationContext(), "sdsdsdsd"+position, Toast.LENGTH_LONG).show();
+
+
+
     }
 
     @Override
