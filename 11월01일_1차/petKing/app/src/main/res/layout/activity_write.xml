@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/btnmanager"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="right"
+            android:background="#00FFFFFF"
+            android:src="@drawable/back" />
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="28sp"
+            android:layout_marginTop="10dp"
+            android:textColor="#000000"
+            android:text=" 글쓰기" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
+
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:background="@drawable/round_button"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:text="완료" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#DCD9D6" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow>
+                <EditText
+                    android:id="@+id/writeTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="  제목을 입력하세요."
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"/>
+            </TableRow>
+            <View
+                android:id="@+id/view2"
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/textView1"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#DCD9D6" />
+            <Spinner
+                android:id="@+id/spinner"
+                android:entries="@array/종류"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+            <View
+                android:id="@+id/view1"
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/textView1"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#DCD9D6" />
+
+            <TableRow>
+                <EditText
+                    android:id="@+id/writePrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="  가격 입력 (*선택사함)"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"/>/>
+
+                <CheckBox
+                    android:id="@+id/checkBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="가격 제안받기 가능" />
+            </TableRow>
+        </TableLayout>
+
+        <View
+            android:id="@+id/view4"
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/textView1"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="#DCD9D6" />
+
+        <EditText
+            android:id="@+id/writeContents"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:hint="  내용을 입력하세요."
+            android:layout_weight="1"
+            android:background="@android:color/transparent"/>/> />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view5"
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#DCD9D6" />
+
+    <ImageButton
+        android:id="@+id/add_image"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/picture"
+        android:scaleType="centerInside"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/loaded_image"
+        android:layout_marginTop="10dp"/>
+
+/>
+
+</LinearLayout>
