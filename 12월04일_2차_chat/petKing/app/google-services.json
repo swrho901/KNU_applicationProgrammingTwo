@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "888071011566",
+    "firebase_url": "https://petking-51b02-default-rtdb.firebaseio.com",
+    "project_id": "petking-51b02",
+    "storage_bucket": "petking-51b02.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:888071011566:android:5148ef9ddf8a5c0a2907ff",
+        "android_client_info": {
+          "package_name": "com.example.petking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "888071011566-q2j28073d6dgrqlfhf37mmkkmdhv7pvu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVjqSEp406HzFttgNq9PO8t2JprNvSAtk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "888071011566-q2j28073d6dgrqlfhf37mmkkmdhv7pvu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
