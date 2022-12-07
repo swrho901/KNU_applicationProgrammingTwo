@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string-array name="종류">
-        <item>펫 시터 구함</item>
-        <item>펫 시터 해드림</item>
-        <item>도그 워커 구함</item>
-        <item>도그 워커 해드림</item>
-    </string-array>
-</resources>
